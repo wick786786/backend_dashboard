@@ -16,6 +16,11 @@ const pool = new Pool({
 app.use(bodyParser.json());
 
 // Routes for CRUD operations
+app.get("/",(req,res)=>{
+    res.setHeader("Access-Control-Allow-Credentials","true");
+    res.send("API IS RUNNING");
+}
+    );
 app.get('/programs', getAllPrograms);
 app.get('/programs/:id', getProgramById);
 app.post('/programs', createProgram);
