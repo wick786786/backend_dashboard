@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const { Pool } = require('pg');
 const cors = require('cors');
 const app = express();
-const port = 5000; // Set your desired port
+
 app.use(cors());
 const pool = new Pool({
     connectionString: process.env.POSTGRES_URL + "?sslmode=require",
@@ -110,6 +110,6 @@ async function deleteProgram(req, res) {
     }
 }
 
-app.listen(port, () => {
+app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${port}`);
 });
