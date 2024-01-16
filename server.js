@@ -3,19 +3,15 @@ const bodyParser = require('body-parser');
 const { Pool } = require('pg');
 const cors = require('cors');
 const app = express();
-
+const port = 5000; // Set your desired port
 app.use(cors());
 const pool = new Pool({
-    connectionString: process.env.POSTGRES_URL + "?sslmode=require",
-  })
-const corsOptions ={
-   origin:'*', 
-   credentials:true,            //access-control-allow-credentials:true
-   optionSuccessStatus:200,
-}
-
-app.use(cors(corsOptions)) // Use this after the variable declaration
-
+    user: 'satyamyadav',
+    host: 'localhost',
+    database: 'program',
+    password: 'satu@786786',
+    port: 5432,
+});
 
 app.use(bodyParser.json());
 
@@ -110,6 +106,6 @@ async function deleteProgram(req, res) {
     }
 }
 
-app.listen(process.env.PORT, () => {
+app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
