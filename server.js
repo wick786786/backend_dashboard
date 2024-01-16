@@ -5,6 +5,12 @@ const cors = require('cors');
 const app = express();
 const port = 5000; // Set your desired port
 app.use(cors());
+app.use(cors({
+    origin: 'https://back-end-jlrx.onrender.com/', // Replace with your frontend's URL
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+}));
+
 const pool = new Pool({
     user: 'satyamyadav',
     host: 'localhost',
@@ -16,11 +22,6 @@ const pool = new Pool({
 app.use(bodyParser.json());
 
 // Routes for CRUD operations
-app.get("/",(req,res)=>{
-    res.setHeader("Access-Control-Allow-Credentials","true");
-    res.send("API IS RUNNING");
-}
-    );
 app.get('/programs', getAllPrograms);
 app.get('/programs/:id', getProgramById);
 app.post('/programs', createProgram);
