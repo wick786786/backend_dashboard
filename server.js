@@ -5,7 +5,9 @@ const cors = require('cors');
 const app = express();
 const port = 5000; // Set your desired port
 app.use(cors());
-
+const pool = new Pool({
+    connectionString: process.env.POSTGRES_URL + "?sslmode=require",
+  })
 const corsOptions ={
    origin:'*', 
    credentials:true,            //access-control-allow-credentials:true
@@ -13,13 +15,7 @@ const corsOptions ={
 }
 
 app.use(cors(corsOptions)) // Use this after the variable declaration
-const pool = new Pool({
-    user: 'satyamyadav',
-    host: 'localhost',
-    database: 'program',
-    password: 'satu@786786',
-    port: 5432,
-});
+
 
 app.use(bodyParser.json());
 
